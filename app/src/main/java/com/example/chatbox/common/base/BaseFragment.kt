@@ -8,9 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.example.chatbox.common.inflater
 
-abstract class BaseFragment<VB: ViewBinding>(
+abstract class BaseFragment<VB : ViewBinding>(
     private val inflater: inflater<VB>
-): Fragment() {
+) : Fragment() {
 
     private var _binding: VB? = null
     protected val binding get() = _binding!!
@@ -32,5 +32,10 @@ abstract class BaseFragment<VB: ViewBinding>(
 
         started()
         observers()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

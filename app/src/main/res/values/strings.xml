@@ -5,7 +5,7 @@
     <string name="OnBoardingText">The Best\n Way To\n Stay\n In Touch\n With\n Beloved\n Ones</string>
     <string name="log_in">Log In</string>
     <string name="sign_up">Sign Up</string>
-    <string name="log_in_to_chatbox">Log in to Chatbox</string>
+    <string name="log_in_to_chatbox"><font background='@drawable/btn_back.xml'>Log</font> in to Chatbox</string>
     <string name="or">OR</string>
     <string name="password">password</string>
 </resources>
