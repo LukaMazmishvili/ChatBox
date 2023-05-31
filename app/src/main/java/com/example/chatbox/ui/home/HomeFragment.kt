@@ -1,4 +1,4 @@
-package com.example.chatbox.presentation
+package com.example.chatbox.ui.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,15 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.chatbox.R
 import com.example.chatbox.common.base.BaseFragment
-import com.example.chatbox.databinding.FragmentLogInBinding
+import com.example.chatbox.databinding.FragmentHomeBinding
 
-class LogInFragment : BaseFragment<FragmentLogInBinding>(FragmentLogInBinding::inflate) {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
     override fun started() {
 
     }
 
-    override fun observers() {
-
+    override fun listeners() {
     }
-
 }

@@ -1,5 +1,6 @@
-package com.example.chatbox.presentation
+package com.example.chatbox.ui.onboarding
 
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.chatbox.common.base.BaseFragment
 import com.example.chatbox.databinding.FragmentOnBoardingBinding
@@ -14,6 +15,10 @@ class OnBoardingFragment :
     }
 
     override fun observers() {
+
+    }
+
+    override fun listeners() {
 
     }
 

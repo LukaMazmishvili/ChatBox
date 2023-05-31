@@ -25,12 +25,14 @@ abstract class BaseFragment<VB : ViewBinding>(
     }
 
     abstract fun started()
-    abstract fun observers()
+    abstract fun listeners()
+    open fun observers(){}
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         started()
+        listeners()
         observers()
     }
 

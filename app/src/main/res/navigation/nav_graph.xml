@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/onBoardingFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/onBoardingFragment"
-        android:name="com.example.chatbox.presentation.OnBoardingFragment"
+        android:name="com.example.chatbox.ui.onboarding.OnBoardingFragment"
         android:label="fragment_on_boarding"
         tools:layout="@layout/fragment_on_boarding" >
         <action
@@ -17,8 +17,13 @@
 
     <fragment
         android:id="@+id/logInFragment"
-        android:name="com.example.chatbox.presentation.LogInFragment"
+        android:name="com.example.chatbox.ui.login.LogInFragment"
         android:label="fragment_log_in"
         tools:layout="@layout/fragment_log_in" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.chatbox.ui.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
 
 </navigation>
