@@ -15,15 +15,12 @@ class LogInVM @Inject constructor(private val auth: FirebaseAuth) : ViewModel() 
     val loginState = _loginState.asStateFlow()
 
     fun userLogin(email: String, password: String) {
-        if (email.validEmailAddress() && email.isNotEmpty()) {
-            auth.signInWithEmailAndPassword(email, password)
-                .addOnSuccessListener {
-                    _loginState.value = "Successful"
-                }
-                .addOnFailureListener {
-                    _loginState.value = "Failed"
-                }
-
-        }
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnSuccessListener {
+                _loginState.value = "Successful"
+            }
+            .addOnFailureListener {
+                _loginState.value = "Failed"
+            }
     }
 }

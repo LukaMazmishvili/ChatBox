@@ -53,4 +53,14 @@
         app:layout_constraintTop_toBottomOf="@id/btnSearch"
         tools:listitem="@layout/item_story"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvChats"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/main_view_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rvStories" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

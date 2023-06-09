@@ -1,11 +1,12 @@
 package com.example.chatbox.ui.login
 
-import android.widget.Toast
+import android.util.Log
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import com.example.chatbox.common.base.BaseFragment
 import com.example.chatbox.common.hideAuthErrorMessage
 import com.example.chatbox.common.showAuthErrorMessage
@@ -26,7 +27,21 @@ class LogInFragment : BaseFragment<FragmentLogInBinding>(FragmentLogInBinding::i
 
     override fun listeners() {
         binding.etEmail.doOnTextChanged { _, _, _, _ ->
+
+            hideAuthErrorMessage(
+                binding.etEmail,
+                binding.tvEmailHeading,
+                binding.tvEmailErrorMessage
+            )
+
             binding.etPassword.doOnTextChanged { _, _, _, _ ->
+
+                hideAuthErrorMessage(
+                    binding.etPassword,
+                    binding.tvPasswordHeading,
+                    binding.tvPasswordErrorMessage
+                )
+
                 binding.btnLogIn.activate()
             }
         }
@@ -34,29 +49,26 @@ class LogInFragment : BaseFragment<FragmentLogInBinding>(FragmentLogInBinding::i
             val email = binding.etEmail.text.toString().trim()
             val password = binding.etPassword.text.toString().trim()
 
+            if (password.isEmpty() || password.length <= 6) {
+                showAuthErrorMessage(
+                    binding.etPassword,
+                    binding.tvPasswordHeading,
+                    binding.tvPasswordErrorMessage,
+                    "Enter Valid Password\nmust contain 0-9 and length > 6"
+                )
+            }
+
             if (!email.validEmailAddress()) {
+                Log.d("emailValidation", email.validEmailAddress().toString())
                 showAuthErrorMessage(
                     binding.etEmail,
                     binding.tvEmailHeading,
                     binding.tvEmailErrorMessage,
                     "Enter Valid Email"
                 )
-//                signIn(email, password)
-            } else {
-                hideAuthErrorMessage(
-                    binding.etEmail,
-                    binding.tvEmailHeading,
-                    binding.tvEmailErrorMessage
-                )
             }
-            if (password.isEmpty() || password.length <= 6) {
-                showAuthErrorMessage(
-                    binding.etPassword,
-                    binding.tvPasswordHeading,
-                    binding.tvPasswordErrorMessage,
-                    "Enter Valid Password\nmust contain 0-9 and length >6"
-                )
-            }
+
+            signIn(email, password)
         }
     }
 
@@ -65,16 +77,13 @@ class LogInFragment : BaseFragment<FragmentLogInBinding>(FragmentLogInBinding::i
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.userLogin(email, password)
                 viewModel.loginState.collect { loginState ->
-                    if (loginState == "Successful") {
-                        Toast.makeText(
-                            requireActivity(),
-                            "Succesfully Signed In",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                    when (loginState) {
+                        "Successful" -> {
+                            findNavController().navigate(LogInFragmentDirections.actionLogInFragmentToHomeFragment())
+                        }
                     }
                 }
             }
         }
-
     }
 }
