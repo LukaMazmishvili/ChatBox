@@ -1,8 +1,11 @@
 package com.example.chatbox.ui.onboarding
 
+import android.view.View
 import androidx.navigation.fragment.findNavController
+import com.example.chatbox.R
 import com.example.chatbox.common.base.BaseFragment
 import com.example.chatbox.databinding.FragmentOnBoardingBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -16,6 +19,11 @@ class OnBoardingFragment :
         FirebaseAuth.getInstance().currentUser?.uid?.let {
             findNavController().navigate(OnBoardingFragmentDirections.actionOnBoardingFragmentToHomeFragment())
         }
+
+        //Hide Bottom Navigation View
+        requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavBar).visibility =
+            View.GONE
+
     }
 
     override fun listeners() {

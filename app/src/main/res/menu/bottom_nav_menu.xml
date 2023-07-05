@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_message"
+        android:title="Message"
+        android:iconTint="@color/applicationColorGray"/>
+
+    <item
+        android:id="@+id/callsFragment"
+        android:icon="@drawable/ic_calls"
+        android:title="Calls"
+        android:iconTint="@color/applicationColorGray" />
+
+    <item
+        android:id="@+id/contactsFragment"
+        android:icon="@drawable/ic_contacts"
+        android:title="Contacts"
+        android:iconTint="@color/applicationColorGray" />
+
+    <item
+        android:id="@+id/settingsFragment"
+        android:icon="@drawable/ic_settings"
+        android:title="Settings"
+        android:iconTint="@color/applicationColorGray" />
+
+</menu>
