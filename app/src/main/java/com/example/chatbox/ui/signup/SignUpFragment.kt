@@ -1,5 +1,6 @@
 package com.example.chatbox.ui.signup
 
+import android.view.View
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
@@ -7,6 +8,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.example.chatbox.R
 import com.example.chatbox.common.base.BaseFragment
 import com.example.chatbox.common.hideAuthErrorMessage
 import com.example.chatbox.common.showAuthErrorMessage
@@ -14,6 +16,7 @@ import com.example.chatbox.databinding.FragmentSignUpBinding
 import com.example.chatbox.extentions.activate
 import com.example.chatbox.extentions.validEmailAddress
 import com.example.chatbox.ui.login.LogInFragmentDirections
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -22,7 +25,13 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
 
     private val viewModel: SignUpVM by viewModels()
 
-    override fun started() {}
+    override fun started() {
+
+        //Hide Bottom Navigation View
+        requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavBar).visibility =
+            View.GONE
+
+    }
 
     override fun listeners() {
         with(binding) {

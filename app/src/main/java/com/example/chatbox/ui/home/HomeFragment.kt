@@ -8,9 +8,14 @@ import android.view.ViewGroup
 import com.example.chatbox.R
 import com.example.chatbox.common.base.BaseFragment
 import com.example.chatbox.databinding.FragmentHomeBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
     override fun started() {
+
+        //Hide Bottom Navigation View
+        requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavBar).visibility =
+            View.VISIBLE
 
     }
 

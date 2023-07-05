@@ -1,18 +1,22 @@
 package com.example.chatbox.ui.login
 
 import android.util.Log
+import android.view.View
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import com.example.chatbox.R
 import com.example.chatbox.common.base.BaseFragment
 import com.example.chatbox.common.hideAuthErrorMessage
 import com.example.chatbox.common.showAuthErrorMessage
 import com.example.chatbox.databinding.FragmentLogInBinding
 import com.example.chatbox.extentions.activate
 import com.example.chatbox.extentions.validEmailAddress
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -22,6 +26,10 @@ class LogInFragment : BaseFragment<FragmentLogInBinding>(FragmentLogInBinding::i
     private val viewModel: LogInVM by viewModels()
 
     override fun started() {
+
+        //Hide Bottom Navigation View
+        requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavBar).visibility =
+            View.GONE
 
     }
 
