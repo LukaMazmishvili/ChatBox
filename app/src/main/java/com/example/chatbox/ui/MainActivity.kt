@@ -39,6 +39,9 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigation = binding.bottomNavBar
         bottomNavigation.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_LABELED
 
+        bottomNavigation.itemTextAppearanceInactive = R.style.BottomNavigationTextStyle
+        bottomNavigation.itemTextAppearanceActive = R.style.BottomNavigationTextStyle
+
         setupWithNavController(bottomNavigation, navController)
 
     }
