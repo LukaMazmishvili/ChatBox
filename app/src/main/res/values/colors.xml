@@ -10,4 +10,5 @@
     <color name="applicationColorRed">#FF2D1B</color>
     <color name="applicationColorGreen">#24786D</color>
     <color name="applicationColorGray">#797C7B</color>
+    <color name="applicationBackgroundColor">#000E08</color>
 </resources>
