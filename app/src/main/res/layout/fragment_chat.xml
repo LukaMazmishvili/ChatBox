@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.chat.ChatFragment">
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/ibBtnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/btn_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivPic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_round_profile"
+        app:layout_constraintStart_toEndOf="@id/ibBtnBack"
+        app:layout_constraintTop_toTopOf="@id/ibBtnBack"
+        app:layout_constraintBottom_toBottomOf="@id/ibBtnBack"
+        android:layout_marginStart="10dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/ivPic"
+        app:layout_constraintTop_toTopOf="@id/ivPic"
+        android:text="Name"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="6dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvActiveStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="activeStatus"
+        app:layout_constraintTop_toBottomOf="@id/tvName"
+        app:layout_constraintStart_toEndOf="@id/ivPic"
+        android:layout_marginStart="10dp"/>
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/ibVideoCall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_video_call"
+        android:tint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ibBtnBack"
+        app:layout_constraintBottom_toBottomOf="@id/ibBtnBack"
+        android:layout_marginEnd="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/ibVoiceCall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_call"
+        android:tint="@color/black"
+        app:layout_constraintEnd_toStartOf="@id/ibVideoCall"
+        app:layout_constraintTop_toTopOf="@id/ibVideoCall"
+        app:layout_constraintBottom_toBottomOf="@id/ibVideoCall"
+        android:layout_marginEnd="20dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        app:layout_constraintTop_toBottomOf="@id/ivPic"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="20dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
