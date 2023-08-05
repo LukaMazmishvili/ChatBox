@@ -8,8 +8,10 @@ import android.provider.CalendarContract.Colors
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.chatbox.R
 import com.example.chatbox.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationBarView
@@ -27,6 +29,9 @@ class MainActivity : AppCompatActivity() {
         installSplashScreen()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //Setup Bottom Navigation
+//        binding.bottomNavBar.setupWithNavController(binding.navHost.findNavController())
 
         setUpBottomNavBar()
     }

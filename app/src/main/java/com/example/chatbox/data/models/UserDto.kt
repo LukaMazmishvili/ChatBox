@@ -8,7 +8,7 @@ data class UserDto(
     val isActive: Boolean = false,
     val notifications: List<Notification> = emptyList(),
     val stories: List<Story>? = null,
-    val chats: List<ChatModel>? = listOf<ChatModel>(),
+    val chats: List<ChatModel>? = null,
     val friends: List<String>? = null
     ) {
     data class Notification(

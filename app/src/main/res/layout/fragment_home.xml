@@ -2,6 +2,7 @@
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/srlRefreshLayout"
     android:layout_height="match_parent"
     android:background="@color/applicationBackgroundColor"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -93,6 +94,7 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="50dp"
+            android:id="@+id/fabAddChat"
             android:layout_height="50dp"
             android:src="@drawable/ic_plus"
             style="@style/FloatingButtonStyle"

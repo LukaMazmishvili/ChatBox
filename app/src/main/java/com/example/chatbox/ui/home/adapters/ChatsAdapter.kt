@@ -1,5 +1,6 @@
 package com.example.chatbox.ui.home.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -20,7 +21,7 @@ class ChatsAdapter: ListAdapter<ChatModel, ChatsAdapter.ViewHolder>(ChatsDiffUti
 
     class ChatsDiffUtil() : DiffUtil.ItemCallback<ChatModel>(){
         override fun areItemsTheSame(oldItem: ChatModel, newItem: ChatModel): Boolean {
-            return oldItem.title == newItem.title
+            return oldItem.chatId == newItem.chatId
         }
 
         override fun areContentsTheSame(oldItem: ChatModel, newItem: ChatModel): Boolean {
@@ -34,10 +35,13 @@ class ChatsAdapter: ListAdapter<ChatModel, ChatsAdapter.ViewHolder>(ChatsDiffUti
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item  = getItem(position)
+        Log.d("CheckItemInAdapter", "onBindViewHolder: $item")
 
-        Glide.with(holder.image.context).load(item.image).circleCrop().into(holder.image)
-        holder.title.text = item.title
-        holder.lastMessage.text = item.lastMessage
-        holder.lastMessageSentTime.text = item.lastMessageTime
+        item?.let {
+            Glide.with(holder.image.context).load(item.image).circleCrop().into(holder.image)
+            holder.title.text = item.title
+            holder.lastMessage.text = item.lastMessage
+            holder.lastMessageSentTime.text = item.lastMessageTime
+        }
     }
 }

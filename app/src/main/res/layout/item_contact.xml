@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivContactPic"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_margin="20dp"
+        app:srcCompat="@drawable/ic_round_profile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvContactUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/ivContactPic"
+        app:layout_constraintTop_toTopOf="@id/ivContactPic"
+        android:layout_margin="8dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvContactBio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contact Bio"
+        android:textColor="@color/applicationColorGray"
+        app:layout_constraintTop_toBottomOf="@id/tvContactUsername"
+        app:layout_constraintStart_toEndOf="@id/ivContactPic"
+        android:layout_marginStart="9dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
