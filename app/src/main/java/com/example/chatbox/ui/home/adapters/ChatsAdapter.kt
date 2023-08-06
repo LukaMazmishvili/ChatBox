@@ -3,6 +3,7 @@ package com.example.chatbox.ui.home.adapters
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.AdapterView.OnItemLongClickListener
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +13,11 @@ import com.example.chatbox.databinding.ItemChatBinding
 
 class ChatsAdapter: ListAdapter<ChatModel, ChatsAdapter.ViewHolder>(ChatsDiffUtil()) {
 
+    var onItemClicked : ((ChatModel) -> Unit)? = null
+    var onItemLongClicked : ((ChatModel) -> Unit)? = null
+
     inner class ViewHolder(binding: ItemChatBinding): RecyclerView.ViewHolder(binding.root) {
+        val root = binding.root
         val image = binding.ivChatSenderImg
         val title = binding.tvSenderName
         val lastMessage = binding.tvLastMessage
@@ -42,6 +47,15 @@ class ChatsAdapter: ListAdapter<ChatModel, ChatsAdapter.ViewHolder>(ChatsDiffUti
             holder.title.text = item.title
             holder.lastMessage.text = item.lastMessage
             holder.lastMessageSentTime.text = item.lastMessageTime
+
+            holder.root.setOnLongClickListener {
+                onItemLongClicked?.invoke(item)
+                true
+            }
+
+            holder.root.setOnClickListener {
+                onItemClicked?.invoke(item)
+            }
         }
     }
 }

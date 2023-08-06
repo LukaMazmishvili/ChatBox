@@ -52,7 +52,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     override fun listeners() {
         with(binding) {
             fabAddChat.setOnClickListener {
-//                createNewChat()
                 FirebaseDatabase.getInstance().getReference("Users")
                     .child(FirebaseAuth.getInstance().currentUser!!.uid).child("chats").child("1").removeValue()
                 checkDataBaseBranch()
@@ -62,11 +61,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 //                chatsAdapter.submitList(emptyList())
                 checkDataBaseBranch()
             }
+
+            chatsAdapter.onItemLongClicked = {
+                FirebaseDatabase.getInstance().getReference("Users")
+                    .child(FirebaseAuth.getInstance().currentUser!!.uid).child("chats").child("1").removeValue()
+            }
+
         }
-    }
-
-    private fun createNewChat() {
-
     }
 
     private fun setUpRecyclerViews() {
@@ -80,7 +81,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
         val db = FirebaseDatabase.getInstance().getReference("Users")
 
-//        db.child(FirebaseAuth.getInstance().currentUser!!.uid).child("chats").setValue(chatsList())
+        db.child(FirebaseAuth.getInstance().currentUser!!.uid).child("chats").setValue(chatsList())
     }
 
     private fun checkDataBaseBranch() {

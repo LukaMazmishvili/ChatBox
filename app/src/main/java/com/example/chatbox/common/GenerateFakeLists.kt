@@ -10,9 +10,9 @@ fun chatsList() : List<ChatModel> {
     for (i in 1..10) {
         chatsList.add(
             ChatModel(
-                i,
+                i-1,
                 "https://as1.ftcdn.net/v2/jpg/03/02/88/46/1000_F_302884605_actpipOdPOQHDTnFtp4zg4RtlWzhOASp.jpg",
-                "sender${i}",
+                "sender${i-1}",
                 "lastMessage",
                 "20:19",
                 1
