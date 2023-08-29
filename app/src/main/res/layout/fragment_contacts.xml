@@ -63,7 +63,7 @@
             android:textStyle="bold"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvChats"
+            android:id="@+id/rvContacts"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="20dp"
@@ -72,7 +72,7 @@
             tools:listitem="@layout/item_contact" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvNoConversations"
+            android:id="@+id/tvNoContacts"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="No Contacts ?\n Add Friends, Don't Be Alone ;)"

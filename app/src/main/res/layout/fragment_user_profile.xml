@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/applicationBackgroundColor"
+    tools:context=".ui.userProfile.UserProfileFragment">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:src="@drawable/btn_back"
+        android:tint="@color/white"
+        android:backgroundTint="@color/applicationBackgroundColor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llUserLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btnBack">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivUserImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/ic_round_profile" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="userName"
+            android:textColor="@color/white"
+            android:textSize="32sp"
+            android:textStyle="italic" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvUserTagName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/applicationColorGray"
+            android:text="userTagName" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llToolsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/llUserLayout">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/ibAddAsFriend"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/bg_tool_icon"
+            android:scaleType="center"
+            android:visibility="gone"
+            android:src="@drawable/ic_add_friend" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/ibOpenChat"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/bg_tool_icon"
+            android:scaleType="center"
+            android:src="@drawable/ic_open_chat" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/ibStartVideoCall"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="40dp"
+            android:background="@drawable/bg_tool_icon"
+            android:scaleType="center"
+            android:src="@drawable/ic_call" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/ibStartVoiceCall"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="40dp"
+            android:background="@drawable/bg_tool_icon"
+            android:scaleType="center"
+            android:src="@drawable/ic_video_call" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/ibMoreOptions"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="40dp"
+            android:background="@drawable/bg_tool_icon"
+            android:scaleType="center"
+            android:src="@drawable/ic_dots" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/main_view_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llToolsLayout">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDisplayNameHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Display Name"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDisplayName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="userName"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:layout_marginStart="5dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvEmailAddressHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email Address"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvEmailAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="example@example.example"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:layout_marginStart="5dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAddressHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Address"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Address"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:layout_marginStart="5dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPhoneNumberHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone Number"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPhoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(995) 000-000-000"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:layout_marginStart="5dp"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,4 +14,8 @@ class GetChatsUseCase @Inject constructor(private val chatsRepo: ChatsRepository
         return chatsRepo.getChats(userId)
     }
 
+    suspend operator fun invoke(userId: String, position : Int) {
+        chatsRepo.deleteChat(userId, position)
+    }
+
 }

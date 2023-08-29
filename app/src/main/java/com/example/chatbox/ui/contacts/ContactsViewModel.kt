@@ -1,11 +1,12 @@
-package com.example.chatbox.ui.home
+package com.example.chatbox.ui.contacts
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.chatbox.common.Resource
 import com.example.chatbox.data.models.ChatModel
-import com.example.chatbox.domain.usecases.GetChatsUseCase
+import com.example.chatbox.data.models.UserDto
+import com.example.chatbox.domain.usecases.GetContactsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -13,18 +14,19 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeVM @Inject constructor(private val getChatsUseCase: GetChatsUseCase) : ViewModel() {
+class ContactsViewModel @Inject constructor(private val getContactsUseCase: GetContactsUseCase) :
+    ViewModel() {
 
-    private val _getChatsState = MutableStateFlow(ChatsApiState())
-    val getChatsState = _getChatsState.asStateFlow()
+    private val _getContactsState = MutableStateFlow(ContactApiState())
+    val getContactsState = _getContactsState.asStateFlow()
 
-    fun getChats(userId: String?) {
+    fun getContacts(userId: String?) {
         userId?.let {
             viewModelScope.launch {
-                _getChatsState.value = _getChatsState.value.copy(isLoading = true)
-                when (val response = getChatsUseCase.invoke(userId)) {
+                _getContactsState.value = _getContactsState.value.copy(isLoading = true)
+                when (val response = getContactsUseCase.invoke(userId)) {
                     is Resource.Success -> {
-                        _getChatsState.value = _getChatsState.value.copy(
+                        _getContactsState.value = _getContactsState.value.copy(
                             isLoading = false,
                             data = response.data?.toList(),
                         )
@@ -32,7 +34,7 @@ class HomeVM @Inject constructor(private val getChatsUseCase: GetChatsUseCase) :
                     }
 
                     is Resource.Error -> {
-                        _getChatsState.value = _getChatsState.value.copy(
+                        _getContactsState.value = _getContactsState.value.copy(
                             isLoading = false,
                             error = response.errorMsg
                         )
@@ -40,7 +42,7 @@ class HomeVM @Inject constructor(private val getChatsUseCase: GetChatsUseCase) :
                     }
 
                     is Resource.Loading -> {
-                        _getChatsState.value = _getChatsState.value.copy(
+                        _getContactsState.value = _getContactsState.value.copy(
                             isLoading = true
                         )
                         Log.d("CheckIfCodeWorks", "getChats: $response")
@@ -50,15 +52,10 @@ class HomeVM @Inject constructor(private val getChatsUseCase: GetChatsUseCase) :
         }
     }
 
-    fun deleteChat(userId: String, chatPosition: Int) {
-        viewModelScope.launch {
-            getChatsUseCase.invoke(userId, chatPosition)
-        }
-    }
-
-    data class ChatsApiState(
+    data class ContactApiState(
         val isLoading: Boolean = false,
-        val data: List<ChatModel>? = null,
+        val data: List<UserDto.Contact>? = null,
         val error: String = ""
     )
+
 }

@@ -9,7 +9,7 @@
         android:id="@+id/onBoardingFragment"
         android:name="com.example.chatbox.ui.onboarding.OnBoardingFragment"
         android:label="fragment_on_boarding"
-        tools:layout="@layout/fragment_on_boarding" >
+        tools:layout="@layout/fragment_on_boarding">
         <action
             android:id="@+id/to_logInFragment"
             app:destination="@id/logInFragment"
@@ -27,7 +27,7 @@
         android:id="@+id/logInFragment"
         android:name="com.example.chatbox.ui.login.LogInFragment"
         android:label="fragment_log_in"
-        tools:layout="@layout/fragment_log_in" >
+        tools:layout="@layout/fragment_log_in">
         <action
             android:id="@+id/action_logInFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
@@ -41,7 +41,7 @@
         android:id="@+id/signUpFragment"
         android:name="com.example.chatbox.ui.signup.SignUpFragment"
         android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" >
+        tools:layout="@layout/fragment_sign_up">
         <action
             android:id="@+id/to_homeFragment"
             app:destination="@id/homeFragment" />
@@ -62,4 +62,21 @@
         android:name="com.example.chatbox.ui.settings.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/userProfile"
+        android:name="com.example.chatbox.ui.userProfile.UserProfileFragment"
+        android:label="fragment_user_profile"
+        tools:layout="@layout/fragment_user_profile" >
+        <argument
+            android:name="userId"
+            app:argType="string" />
+        <argument
+            android:name="isFriend"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_userProfile"
+        app:destination="@id/userProfile" />
 </navigation>

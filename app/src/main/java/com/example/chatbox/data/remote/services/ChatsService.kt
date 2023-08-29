@@ -1,13 +1,18 @@
 package com.example.chatbox.data.remote.services
 
-import com.example.chatbox.common.Resource
+
+import com.example.chatbox.common.constants.Endpoints.GET_CHATS_ENDPOINT
+import com.example.chatbox.common.constants.Endpoints.DELETE_CHAT_ENDPOINT
 import com.example.chatbox.data.models.ChatModel
-import com.example.chatbox.data.models.UserDto
 import retrofit2.Response
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface ChatsService {
-    @GET("Users/{userID}/chats.json")
-    suspend fun fetchChats(@Path("userID") userId: String) : Response<List<ChatModel>?>
+    @GET(GET_CHATS_ENDPOINT)
+    suspend fun fetchChats(@Path("userID") userId: String): Response<List<ChatModel>?>
+
+    @DELETE(DELETE_CHAT_ENDPOINT)
+    suspend fun deleteChat(@Path("userId") userId: String, @Path("chatId") chatId: Int): Response<*>
 }

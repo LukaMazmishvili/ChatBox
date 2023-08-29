@@ -5,6 +5,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.chatbox.R
 import com.example.chatbox.common.base.BaseFragment
 import com.example.chatbox.databinding.FragmentOnBoardingBinding
+import com.example.chatbox.extentions.bottomNavBarVisibility
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,8 +22,7 @@ class OnBoardingFragment :
         }
 
         //Hide Bottom Navigation View
-        requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavBar).visibility =
-            View.GONE
+        requireActivity().bottomNavBarVisibility(View.GONE)
 
     }
 

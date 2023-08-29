@@ -2,6 +2,7 @@ package com.example.chatbox.ui.home
 
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -10,6 +11,7 @@ import com.example.chatbox.R
 import com.example.chatbox.common.base.BaseFragment
 import com.example.chatbox.common.chatsList
 import com.example.chatbox.common.storiesList
+import com.example.chatbox.data.models.ChatModel
 import com.example.chatbox.databinding.FragmentHomeBinding
 import com.example.chatbox.ui.home.adapters.ChatsAdapter
 import com.example.chatbox.ui.home.adapters.StoriesAdapter
@@ -36,17 +38,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     override fun started() {
-
+        showNavBar()
         setUpRecyclerViews()
-
-        //Hide Bottom Navigation View
-        requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavBar).visibility =
-            View.VISIBLE
-
-//        observer()
-
         checkDataBaseBranch()
 
+    }
+
+    private fun showNavBar()  {
+        requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavBar).visibility =
+            View.VISIBLE
     }
 
     override fun listeners() {
@@ -62,9 +62,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 checkDataBaseBranch()
             }
 
-            chatsAdapter.onItemLongClicked = {
-                FirebaseDatabase.getInstance().getReference("Users")
-                    .child(FirebaseAuth.getInstance().currentUser!!.uid).child("chats").child("1").removeValue()
+            chatsAdapter.onItemLongClicked = { item, position ->
+                viewModel.deleteChat(FirebaseAuth.getInstance().currentUser!!.uid, item.chatId)
+                Log.d("CheckPosition", "listeners: item ${item.chatId}")
+            }
+
+            chatsAdapter.onItemClicked = { item, position ->
+                Toast.makeText(requireActivity(), "$position", Toast.LENGTH_SHORT).show()
             }
 
         }
@@ -91,7 +95,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
-
+                        chatsAdapter.submitList(emptyList())
                         observer()
 
                         Log.d("CheckIfBranchExists", "getChats: ${snapshot.value}")
@@ -116,21 +120,28 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                         val data = chatsList.data
                         Log.d("CheckIfDataReturned", "getChats: $data")
                         data?.let {
-                            if (data.isNotEmpty()) {
-                                Log.d("CheckIfDataReachedUI", "getChats: $data")
-                                binding.srlRefreshLayout.isRefreshing = chatsList.isLoading
-                                binding.tvNoConversations.visibility = View.GONE
-                                binding.rvChats.visibility = View.VISIBLE
-                                chatsAdapter.submitList(data)
-                            } else {
-                                binding.tvNoConversations.visibility = View.VISIBLE
-                                binding.rvChats.visibility = View.GONE
-                                binding.srlRefreshLayout.isRefreshing = chatsList.isLoading
-                            }
+                            updateUi(chatsList)
                         }
                     }
                 }
             }
+        }
+    }
+
+    private fun updateUi(chatsList: HomeVM.ChatsApiState?, ){
+        if (chatsList != null) {
+            val data = chatsList.data
+            if (data!!.isNotEmpty()) {
+                Log.d("CheckIfDataReachedUI", "getChats: $data")
+                binding.srlRefreshLayout.isRefreshing = chatsList.isLoading
+                binding.tvNoConversations.visibility = View.GONE
+                binding.rvChats.visibility = View.VISIBLE
+                chatsAdapter.submitList(data.toList())
+            }
+        } else {
+            binding.tvNoConversations.visibility = View.VISIBLE
+            binding.rvChats.visibility = View.GONE
+            binding.srlRefreshLayout.isRefreshing = false
         }
     }
 }

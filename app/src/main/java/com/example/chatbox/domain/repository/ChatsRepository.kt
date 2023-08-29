@@ -8,4 +8,5 @@ import retrofit2.Response
 
 interface ChatsRepository {
     suspend fun getChats(userId: String) : Resource<List<ChatModel>?>
+    suspend fun deleteChat(userId: String, position: Int)
 }

@@ -5,11 +5,12 @@ data class UserDto(
     val name: String = "",
     val surname: String = "",
     val email: String = "",
+    val bio: String = "Hello ChatBox :)",
     val isActive: Boolean = false,
     val notifications: List<Notification> = emptyList(),
     val stories: List<Story>? = null,
     val chats: List<ChatModel?>? = null,
-    val friends: List<String>? = null
+    val contacts: List<Contact>? = null
     ) {
     data class Notification(
         val notification: String  // Not Implemented
@@ -19,11 +20,10 @@ data class UserDto(
         val story: String = ""
     )
 
-    data class Chat (
-        val id: String
-//        val chatId: String = "",
-//        val sender: String = "",
-//        val msg: String = "",
-//        val img: String = ""
+    data class Contact(
+        val userId: String = "",
+        val image: String = "",
+        val name: String = "",
+        val bio: String
     )
 }

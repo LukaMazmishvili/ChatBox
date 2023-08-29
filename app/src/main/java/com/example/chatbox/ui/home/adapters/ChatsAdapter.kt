@@ -13,8 +13,8 @@ import com.example.chatbox.databinding.ItemChatBinding
 
 class ChatsAdapter: ListAdapter<ChatModel, ChatsAdapter.ViewHolder>(ChatsDiffUtil()) {
 
-    var onItemClicked : ((ChatModel) -> Unit)? = null
-    var onItemLongClicked : ((ChatModel) -> Unit)? = null
+    var onItemClicked : ((ChatModel, Int) -> Unit)? = null
+    var onItemLongClicked : ((ChatModel, Int) -> Unit)? = null
 
     inner class ViewHolder(binding: ItemChatBinding): RecyclerView.ViewHolder(binding.root) {
         val root = binding.root
@@ -32,7 +32,6 @@ class ChatsAdapter: ListAdapter<ChatModel, ChatsAdapter.ViewHolder>(ChatsDiffUti
         override fun areContentsTheSame(oldItem: ChatModel, newItem: ChatModel): Boolean {
             return oldItem == newItem
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(ItemChatBinding.inflate(
@@ -49,12 +48,13 @@ class ChatsAdapter: ListAdapter<ChatModel, ChatsAdapter.ViewHolder>(ChatsDiffUti
             holder.lastMessageSentTime.text = item.lastMessageTime
 
             holder.root.setOnLongClickListener {
-                onItemLongClicked?.invoke(item)
+                Log.d("CheckAdapterPosition", "onBindViewHolder: adapterPosition : $position")
+                onItemLongClicked?.invoke(item, position)
                 true
             }
 
             holder.root.setOnClickListener {
-                onItemClicked?.invoke(item)
+                onItemClicked?.invoke(item, position)
             }
         }
     }
